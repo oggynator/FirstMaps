@@ -28,12 +28,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         builder = new AlertDialog.Builder(this);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
+
+    //This callback is triggered once the map is ready
+    //This method lets us add the markers we want to add, with a "pop up" prompting us for the name of the location
+    //We also call the addKEA() method, which adds KEAs location to the map
+    //
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
